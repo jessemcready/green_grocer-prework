@@ -46,7 +46,7 @@ def apply_clearance(cart)
   # code here
   cart.each do |item, options|
     cart_item = cart[item]
-    puts cart_item
+    puts cart_item[:clearance]
     if cart_item[:clearance]
       cart_item[:price] *= 0.8
     end
