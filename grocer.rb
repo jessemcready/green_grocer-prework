@@ -44,8 +44,11 @@ end
 
 def apply_clearance(cart)
   # code here
-  cart.each do |key, value|
-    puts "#{key} => #{value}"
+  cart.each do |item, options|
+    cart_item = cart[item]
+    options.each do |key, value|
+        
+    end
   end 
 end
 
