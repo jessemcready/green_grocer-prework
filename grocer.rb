@@ -48,7 +48,7 @@ def apply_clearance(cart)
     cart_item = cart[item]
     puts cart_item[:clearance]
     if cart_item[:clearance]
-      cart_item[:price] = cart_item[:price] * 0.8
+      cart_item[:price] = (cart_item[:price]  * 20) / 100
     end
   end 
   cart
