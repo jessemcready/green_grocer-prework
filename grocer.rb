@@ -47,7 +47,7 @@ def apply_clearance(cart)
   cart.each do |item, options|
     cart_item = cart[item]
     puts cart_item[:clearance]
-    if cart_item[:clearance]
+    if cart_item[:clearance] == true
       cart_item[:price] = (cart_item[:price]  * 20) / 100
     end
   end 
