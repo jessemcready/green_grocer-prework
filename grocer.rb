@@ -16,30 +16,21 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
-  # loop through our coupons 
   coupons.each do |coupon|
-    # keep track of our current coupons item name, such as "AVOCADO" or "KALE"
     current_item = coupon[:item]
-    coupon_price = coupon[:cost]
-    # check to see if our cart has an item that matches our current item 
-    if cart[current_item]
-      # if it does have our item, we have to see if it has enough of the same item to match our coupon 
-      if cart[current_item][:count] >= coupon[:num]
-        # if it does have enough items, check to see if our cart already has the coupon item , if it does increment the count
-        coupon_name = current_item += " W/COUPON"
-        if cart[coupon_name]
-            cart[coupon_name][:count] += 1
-        else 
-          cart[coupon_name] = {
-            count: 1,
-            price: coupon_price
-          }
-          cart[coupon_name][:clearance] = cart[current_item][:clearance]
-        end
+    coupon_code = current_item + " W/COUPON"
+    if cart[current_item] && cart[current_item][:count] >= coupon[:num]
+      if cart[coupon_code]
+        cart[coupon_code][:count] += 1 
+      else 
+        cart[coupon_code] = {
+          count: 1,
+          price: coupon[:cost],
+          clearance: cart[current_item][:clearance]
+        }
       end
-      # after we add the coupon to our cart, we have to rearrange our cart to match the number of items we have being used with a coupon 
-        cart[current_item][:count] -= coupon[:num]
-    end
+      cart[current_item][:count] -= coupon[:num]
+    end 
   end
   cart
 end 
