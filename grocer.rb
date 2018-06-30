@@ -60,10 +60,8 @@ def checkout(cart, coupons)
   final_cart = apply_clearance(cart_with_coupon_applied)
   total = 0.0 
   new_cart.each do |item, options|
-    
+    total += options[:price] * options[:count]
   end
-  
-  puts total
   
   if total > 100.0 
     total = total - (total * 0.1)  
