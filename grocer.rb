@@ -16,12 +16,18 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
+  # traverse our list of coupons 
   coupons.each do |coupon|
+    # keep track of our current coupon's item name 
     current_item = coupon[:item]
     coupon_code = current_item + " W/COUPON"
+    # if our cart has the item and has enough of the item to use a coupon 
     if cart[current_item] && cart[current_item][:count] >= coupon[:num]
+      # check if we have our <item> W/COUPON in our cart already 
       if cart[coupon_code]
+        # if we do increment the count 
         cart[coupon_code][:count] += 1 
+      # if we don't have the coupon we will add it to the cart 
       else 
         cart[coupon_code] = {
           count: 1,
@@ -29,6 +35,7 @@ def apply_coupons(cart, coupons)
           clearance: cart[current_item][:clearance]
         }
       end
+      # after we add the coupon to the cart, reduce the count by the number of items needed for the coupon 
       cart[current_item][:count] -= coupon[:num]
     end 
   end
